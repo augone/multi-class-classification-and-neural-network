@@ -28,8 +28,9 @@ grad = zeros(size(theta));
 %       the cost function and gradient computations. 
 %
 hypothesis = sigmoid(X*theta);
-J = (1/m)*sum(-y.*log(hypothesis)-(1-y).*(1-hypothesis)) 
-costRegularization = (lamda/(2*m))*sum((theta(2:end).^2));
+J = (-1/m)*sum(y.*log(hypothesis)+(1-y).*log(1-hypothesis));
+%costJ = (-1/numberOfTrainingExamples) * sum( y .* log(hypothesis) + (1 - y) .* log(1 - hypothesis) );
+costRegularization = (lambda/(2*m))*sum(theta(2:end).^2);
 J = J + costRegularization;
 
 % Hint: When computing the gradient of the regularized cost function, 
@@ -40,8 +41,8 @@ J = J + costRegularization;
 %           temp(1) = 0;   % because we don't add anything for j = 0  
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
-grad = (1/m) * X'*(hypothesis - y);
-gradRegularization =(lamda/m)*[0;theta(2:end)];
+grad = 1/m *X'*(hypothesis - y);% 
+gradRegularization =lambda/m*[0;theta(2:end)];
 grad = grad + gradRegularization;
 
 
