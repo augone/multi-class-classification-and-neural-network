@@ -9,6 +9,14 @@ num_labels = size(Theta2, 1);
 
 % You need to return the following variables correctly 
 p = zeros(size(X, 1), 1);
+X = [ones(size(X,1),1),X];
+
+z1 = sigmoid(X*Theta1');
+a2 = [ones(size(z1,1),1) z1];
+
+a3 = sigmoid(a2*Theta2');
+
+[M, p ] = max(a3,[],2);
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using

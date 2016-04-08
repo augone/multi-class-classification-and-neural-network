@@ -16,6 +16,9 @@ p = zeros(size(X, 1), 1);
 
 % Add ones to the X data matrix
 X = [ones(m, 1) X];
+predict = sigmoid(X*all_theta');
+
+[M,p] = max(predict,[],2);
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
